@@ -1,5 +1,33 @@
 # Amazon CloudFront Secure Static Website
 
+Based on the [CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html).
+
+```shell
+rm -r ./www/*
+cp -r /path/to/my-site/build/* ./www/
+
+ARTIFACTS=solution-artifacts
+STACK=static-site-stack
+DOMAIN=example.com
+SUBDOMAIN=www
+HOSTEDZONE=XXXXXXXXXXXXXXXXXXXXX
+
+aws s3 mb s3://$ARTIFACTS --region us-east-1
+
+aws cloudformation package \
+    --region us-east-1 \
+    --template-file templates/main.yaml \
+    --s3-bucket $ARTIFACTS \
+    --output-template-file packaged.template
+
+aws cloudformation deploy \
+    --region us-east-1 \
+    --stack-name $STACK \
+    --template-file packaged.template \
+    --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
+    --parameter-overrides DomainName=$DOMAIN SubDomain=$SUBDOMAIN HostedZoneId=$HOSTEDZONE
+```
+
 Use this solution to create a secure static website for your registered domain name. With this solution, your website:
 
 - Is hosted on [Amazon S3](https://aws.amazon.com/s3/)

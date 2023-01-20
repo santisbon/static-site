@@ -38,3 +38,6 @@ witch.zip
 
 #nyc output
 **/.nyc_output
+
+# static site content to deploy
+www/*
