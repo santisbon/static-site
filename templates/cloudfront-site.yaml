@@ -143,7 +143,7 @@ Resources:
               Override: true
               Preload: true
             ContentSecurityPolicy: 
-              ContentSecurityPolicy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; manifest-src 'self'; object-src 'none'"
+              ContentSecurityPolicy: "default-src 'none'; img-src 'self' https://*/custom_emojis/images/* ; connect-src https://*/api/v1/custom_emojis; script-src 'self' https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js; style-src 'self'; manifest-src 'self'; object-src 'none'"
               Override: true
             ContentTypeOptions: 
               Override: true
