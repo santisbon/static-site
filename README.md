@@ -2,11 +2,12 @@
 
 Based on the [CloudFront Developer Guide](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html).
 
-In `templates/cloudfront-site.yaml` edit the Content Security Policy for the response headers for the CloudFront distribution, if needed. Examples:
+In `templates/cloudfront-site.yaml` edit the Content Security Policy for the response headers for the CloudFront distribution, if needed. Examples shown in this repo:
 - Your app needs to load a script from a CDN on a different domain.  
 - Your app needs to connect to an API or load images from another domain.
 - You need to load your app's manifest file.  
-This repo shows examples of these cases.
+
+In the same file edit the CloudFront distribution [`PriceClass`](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html?icmpid=docs_cf_help_panel) with one of [these options](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-priceclass) to match your needs.
 
 Deployment
 ```shell

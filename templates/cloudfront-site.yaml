@@ -89,7 +89,7 @@ Resources:
             S3OriginConfig:
               OriginAccessIdentity:
                 !Join ['', ['origin-access-identity/cloudfront/', !Ref CloudFrontOriginAccessIdentity]]
-        PriceClass: 'PriceClass_All'
+        PriceClass: 'PriceClass_100'
         ViewerCertificate:
           AcmCertificateArn: !Ref 'CertificateArn'
           MinimumProtocolVersion: 'TLSv1.1_2016'
