@@ -1,5 +1,7 @@
 # [Amazon CloudFront Secure Static Website](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html)
 
+Review the documentation on the AWS link above. Then follow the instructions on this README to deploy the solution.
+
 ## CloudFront Response Header Policy  
 In `templates/cloudfront-site.yaml` edit the Content Security Policy for the response headers for the CloudFront distribution, if needed. Examples shown in this fork:
 - Your app needs to load a script from a CDN on a different domain.  
@@ -37,10 +39,11 @@ In `templates/cloudfront-site.yaml` edit the CloudFront distribution [`PriceClas
 
 **CreateApex:** Optionally create an Alias to the domain apex (example.com) in your CloudFront configuration.  Default is `no`.
 
+1. Create or empty a folder for your site content with `mkdir www` or `rm -r ./www/*`, respectively.  
+2. Deploy the solution with these commands:
 ```shell
 make package-static
 
-rm -r ./www/*
 cp -r /path/to/my-site/build/* ./www/
 
 ARTIFACTS=solution-artifacts
