@@ -35,7 +35,7 @@ In `templates/cloudfront-site.yaml` edit the CloudFront distribution [`PriceClas
 
 ## Deployment  
 
-> :⚠️ This template can only be deployed in the `us-east-1` region.  
+> ⚠️ This template can only be deployed in the `us-east-1` region.  
 
 **CreateApex:** Optionally create an Alias to the domain apex (example.com) in your CloudFront configuration.  Default is `no`.
 
@@ -67,4 +67,9 @@ aws cloudformation deploy \
     --template-file packaged.template \
     --capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
     --parameter-overrides DomainName=$DOMAIN SubDomain=$SUBDOMAIN HostedZoneId=$HOSTEDZONE CreateApex=$CREATEAPEX
+```
+
+After your site content has been uploaded to its S3 bucket it will not be updated on subsequent runs of `aws cloudformation deploy`. You'll need to upload it manually to the bucket with the name contaning `s3bucketroot`.
+```shell
+aws s3 sync /path/to/my-site/build s3://my-bucket/path --delete
 ```
