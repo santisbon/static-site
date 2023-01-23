@@ -73,3 +73,4 @@ After your site content has been uploaded to its S3 bucket it will not be update
 ```shell
 aws s3 sync /path/to/my-site/build s3://my-bucket/path --delete
 ```
+If you need to remove a file from CloudFront edge caches before it expires, follow [these intructions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html).
