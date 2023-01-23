@@ -143,7 +143,7 @@ Resources:
               Override: true
               Preload: true
             ContentSecurityPolicy: 
-              ContentSecurityPolicy: "default-src 'none'; img-src * data: blob: 'unsafe-inline'; connect-src * data:; script-src 'self' https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js https://unpkg.com/dark-mode-toggle; style-src 'self'; manifest-src 'self'; object-src 'none'"
+              ContentSecurityPolicy: "default-src 'none'; img-src * data: blob: 'unsafe-inline'; connect-src * data:; script-src 'self' https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js https://unpkg.com/dark-mode-toggle; style-src 'self' 'unsafe-inline'; manifest-src 'self'; object-src 'none'"
               Override: true
             ContentTypeOptions: 
               Override: true
