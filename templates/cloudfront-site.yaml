@@ -50,6 +50,21 @@ Resources:
             Principal:
               CanonicalUser: !GetAtt CloudFrontOriginAccessIdentity.S3CanonicalUserId
 
+  UrlRewriteFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      AutoPublish: true
+      FunctionCode: !Sub |
+        function handler(event) {
+          var request = event.request;
+          request.uri = '/';
+          return request;
+        }
+      FunctionConfig:
+        Comment: 'Rewrite the URL for SPAs with client-side routing'
+        Runtime: cloudfront-js-1.0
+      Name: !Sub "${AWS::StackName}-urlRewriteFunction"
+
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -58,6 +73,9 @@ Resources:
           - !Sub '${SubDomain}.${DomainName}'
           - !If [ CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue' ]
         DefaultCacheBehavior:
+          # FunctionAssociations:
+          #   - EventType: viewer-request
+          #     FunctionARN: !GetAtt UrlRewriteFunction.FunctionMetadata.FunctionARN
           Compress: true
           DefaultTTL: 86400
           ForwardedValues:
