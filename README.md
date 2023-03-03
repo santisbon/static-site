@@ -3,10 +3,11 @@
 Review the documentation on the AWS link above. Then follow the instructions on this README to deploy the solution.
 
 ## CloudFront Response Header Policy  
-In `templates/cloudfront-site.yaml` edit the Content Security Policy for the response headers for the CloudFront distribution, if needed. Examples shown in this fork:
+In `templates/cloudfront-site.yaml` edit the Content Security Policy for the response headers for the CloudFront distribution and the CloudFront Function that rewrites URLs, as needed. Examples shown in this fork:
 - Your app needs to load a script from a CDN on a different domain.  
 - Your app needs to connect to an API or load images from another domain.
 - You need to load your app's manifest file.  
+- You need to rewrite the request's URI for your Single Page App.
 
 <details> 
 
